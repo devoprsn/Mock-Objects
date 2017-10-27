@@ -1,4 +1,4 @@
 
 public interface IRandomValueGenerator {
-	public double generateRandomNumber();
+	public int generateRandomNumber(int max);
 }
