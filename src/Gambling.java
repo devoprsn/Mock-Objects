@@ -14,23 +14,23 @@ public class Gambling {
 	    this.rand=rand;
 	 }
 	  
-	 public double getCurrentBalance()
+	 public int getCurrentBalance()
 	 {
 	    return balance;
 	 }
 	  
 	 public void addMoney(int amount)
 	 {
-	    
+	    balance+=amount;
 	 }
 	  
-	 public void betOnANumber(int amnt, int min, int max, int selectedNumber)
+	 public boolean betOnANumber(int amnt, int min, int max, int selectedNumber)
 	 {
-	    
+	    throw new IllegalArgumentException();
 	 }
 	  
-	 public void betOnProbability(int amnt, double p)
+	 public boolean betOnProbability(int amnt, double p)
 	 {
-	    
+		 throw new IllegalArgumentException();
 	 }
 }
