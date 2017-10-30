@@ -7,18 +7,26 @@ public class Tests {
 	Gambling b=new Gambling(50, rand);
 	
 	@Test
-	public void CurrectBetAddsMoney()
+	public void CurrectBetOnNumberAddsMoney()
 	{
 		b.addMoney(100);
 		b.betOnANumber(50, 1, 20, 7);
-		assertEquals(100, Gambling.getCurrentBalance()); //this line is giving me errors
+		assertEquals(950, b.getCurrentBalance()); 
 	}
 	
 	@Test
-	public void IncorrectBetDeductsMoney()
+	public void IncorrectBetOnNumberDeductsMoney()
 	{
 		b.addMoney(100);
 		b.betOnANumber(50, 1, 20, 10);
-		assertEquals(50, Gambling.getCurrentBalance()); //this line has the same problem
+		assertEquals(50, b.getCurrentBalance()); 
+	}
+	
+	@Test
+	public void BetOnProbability()
+	{
+		b.addMoney(100);
+		b.betOnProbability(50, .05);
+		
 	}
 }
