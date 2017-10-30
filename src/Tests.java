@@ -7,26 +7,67 @@ public class Tests {
 	Gambling b=new Gambling(50, rand);
 	
 	@Test
-	public void CurrectBetOnNumberAddsMoney()
+	public void CorrectBetOnNumberAddsMoney()
 	{
 		b.addMoney(100);
-		b.betOnANumber(50, 1, 20, 7);
-		assertEquals(950, b.getCurrentBalance()); 
+		b.betOnANumber(50, 20, 1, 1);
+		assertEquals(1050, b.getCurrentBalance()); 
 	}
 	
 	@Test
 	public void IncorrectBetOnNumberDeductsMoney()
 	{
 		b.addMoney(100);
-		b.betOnANumber(50, 1, 20, 10);
+		b.betOnANumber(50, 20, 1, 10);
 		assertEquals(50, b.getCurrentBalance()); 
 	}
 	
-	@Test
+	@Test (expected=IllegalArgumentException.class)
+	public void InputLowerThanMinThrowsException()
+	{
+		b.addMoney(100);
+		b.betOnANumber(50, 20, 1, -5);
+	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void InputHigherThanMaxThrowsException()
+	{
+		b.addMoney(100);
+		b.betOnANumber(50, 20, 1, 30);
+	}
+	
+	@Test (expected=InsufficientBalanceException.class)
+	public void BetOnANumberAmountGreaterThanBalanceThrowsException()
+	{
+		b.betOnANumber(50, 20, 1, 6);
+	}
+	
+	@Test 
+	public void ProbabilityReturnsTrueAddsMoney()
+	{
+		b.addMoney(100);
+		b.betOnProbability(50, .5);
+		assertEquals(150, b.getCurrentBalance());
+	}
+	
+//	@Test
+//	public void ProbabilityReturnsFalseDeductsMoney()
+//	{
+//		b.addMoney(100);
+//		b.betOnProbability(50, .5);
+//		assertEquals(50, b.getCurrentBalance()); 
+//	}
+	
+	@Test (expected=InvalidProbabilityException.class)
 	public void BetOnProbability()
 	{
 		b.addMoney(100);
+		b.betOnProbability(50, -.05);
+	}
+	
+	@Test (expected=InsufficientBalanceException.class)
+	public void BetOnProbabilityAmountGreaterThanBalanceThrowsException()
+	{
 		b.betOnProbability(50, .05);
-		
 	}
 }

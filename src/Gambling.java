@@ -24,13 +24,47 @@ public class Gambling {
 	    balance+=amount;
 	 }
 	  
-	 public boolean betOnANumber(int amnt, int min, int max, int selectedNumber)
+	 public void betOnANumber(int amnt, int max, int min, int selectedNumber)
 	 {
-	    throw new IllegalArgumentException();
+		 if(amnt>balance || balance<minBalance)
+		 {
+			throw new InsufficientBalanceException();
+		 }
+		 
+		if(selectedNumber>max || selectedNumber<min)
+		{
+			throw new IllegalArgumentException("Invalid number selected.");
+		}
+			
+	    if(rand.generateRandomNumber(max, min)==selectedNumber)
+	    {
+	    	balance+=(max-min)*amnt;
+	    }
+	    else
+	    {
+	    	balance-=amnt;
+	    }
 	 }
 	  
-	 public boolean betOnProbability(int amnt, double p)
+	 public void betOnProbability(int amnt, double p)
 	 {
-		 throw new IllegalArgumentException();
+		 if(amnt>balance || balance<minBalance)
+		 {
+			throw new InsufficientBalanceException();
+		 }
+		 
+		 if(p<0 || p>=1)
+		 {
+			 throw new InvalidProbabilityException();
+		 }
+		 
+		 if(rand.generateRandomBoolean())
+		 {
+			 balance+=(Math.pow(p, -1)-1)*amnt;
+		 }
+		 else
+		 {
+			 balance-=amnt;
+		 }
 	 }
 }
