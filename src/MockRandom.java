@@ -1,10 +1,13 @@
 
 public class MockRandom implements IRandomValueGenerator{
 	
-
-	public int generateRandomNumber(int max)
+	public int generateRandomNumber(int min, int max)
 	{
-		return 7;
+		return 1;
 	}
-
+	
+	public boolean generateRandomBoolean()
+	{
+		return true;
+	}
 }

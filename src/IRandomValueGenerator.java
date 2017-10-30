@@ -1,5 +1,5 @@
 
 public interface IRandomValueGenerator {
-	public int generateRandomNumber(int max);
-
+	int generateRandomNumber(int min, int max);
+	boolean generateRandomBoolean();
 }
