@@ -7,11 +7,25 @@ public class Tests {
 	Gambling b=new Gambling(50, rand);
 	
 	@Test
+	public void CorrectBetOnNumberReturnsTrue()
+	{
+		b.addMoney(100);
+		assertTrue(b.betOnANumber(50, 20, 1, 1));
+	}
+	
+	@Test
 	public void CorrectBetOnNumberAddsMoney()
 	{
 		b.addMoney(100);
 		b.betOnANumber(50, 20, 1, 1);
 		assertEquals(1050, b.getCurrentBalance()); 
+	}
+	
+	@Test
+	public void IncorrectBetOnNumberReturnsFalse()
+	{
+		b.addMoney(100);
+		assertFalse(b.betOnANumber(50, 20, 1, 7));
 	}
 	
 	@Test
@@ -42,14 +56,28 @@ public class Tests {
 		b.betOnANumber(50, 20, 1, 6);
 	}
 	
+	@Test
+	public void ProbabilityGeneratesTrueReturnsTrue()
+	{
+		b.addMoney(100);
+		assertTrue(b.betOnProbability(50, .5));
+	}
+	
 	@Test 
-	public void ProbabilityReturnsTrueAddsMoney()
+	public void ProbabilityGeneratesTrueAddsMoney()
 	{
 		b.addMoney(100);
 		b.betOnProbability(50, .5);
 		assertEquals(150, b.getCurrentBalance());
 	}
+
 	
+//	@Test
+//	public void ProbabilityGeneratesFalseReturnsFalse()
+//	{
+//		assertFalse(b.betOnProbability(50, .5));
+//	}
+//	
 //	@Test
 //	public void ProbabilityReturnsFalseDeductsMoney()
 //	{

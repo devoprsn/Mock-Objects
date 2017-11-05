@@ -24,7 +24,7 @@ public class Gambling {
 	    balance+=amount;
 	 }
 	  
-	 public void betOnANumber(int amnt, int max, int min, int selectedNumber)
+	 public boolean betOnANumber(int amnt, int max, int min, int selectedNumber)
 	 {
 		 if(amnt>balance || balance<minBalance)
 		 {
@@ -39,14 +39,16 @@ public class Gambling {
 	    if(rand.generateRandomNumber(max, min)==selectedNumber)
 	    {
 	    	balance+=(max-min)*amnt;
+	    	return true;
 	    }
 	    else
 	    {
 	    	balance-=amnt;
+	    	return false;
 	    }
 	 }
 	  
-	 public void betOnProbability(int amnt, double p)
+	 public boolean betOnProbability(int amnt, double p)
 	 {
 		 if(amnt>balance || balance<minBalance)
 		 {
@@ -61,10 +63,12 @@ public class Gambling {
 		 if(rand.generateRandomBoolean())
 		 {
 			 balance+=(Math.pow(p, -1)-1)*amnt;
+			 return true;
 		 }
 		 else
 		 {
 			 balance-=amnt;
+			 return false;
 		 }
 	 }
 }
