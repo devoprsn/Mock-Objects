@@ -2,20 +2,25 @@ import java.util.Random;
 
 public class MyRandom implements IRandomValueGenerator{
 	
-	Random rand;
+	private Random rand;
+	private int max;
+	private int min;
 	
 	public MyRandom()
 	{
 		rand=new Random();
-	}
-	 
-	public int generateRandomNumber(int max, int min)
-	{
-		return rand.nextInt((max-min)+1);
+		max=0;
+		min=0;
 	}
 	
-	public boolean generateRandomBoolean()
+	public void setMaxMin(int max, int min)
 	{
-		return rand.nextBoolean();
+		this.max=max;
+		this.min=min;		
+	}
+	
+	public int generateRandomNumber()
+	{
+		return rand.nextInt((max-min)+1);
 	}
 }

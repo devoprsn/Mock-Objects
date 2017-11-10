@@ -21,6 +21,10 @@ public class Gambling {
 	  
 	 public void addMoney(int amount)
 	 {
+		 if(amount<1)
+		 {
+			 throw new IllegalArgumentException("Amount must be greater than 1");
+		 }
 	    balance+=amount;
 	 }
 	  
@@ -35,8 +39,9 @@ public class Gambling {
 		{
 			throw new IllegalArgumentException("Invalid number selected.");
 		}
-			
-	    if(rand.generateRandomNumber(max, min)==selectedNumber)
+		
+		rand.setMaxMin(max, min);
+	    if(rand.generateRandomNumber()==selectedNumber)
 	    {
 	    	balance+=(max-min)*amnt;
 	    	return true;
@@ -48,7 +53,7 @@ public class Gambling {
 	    }
 	 }
 	  
-	 public boolean betOnProbability(int amnt, double p)
+	 public void betOnProbability(int amnt, double p)
 	 {
 		 if(amnt>balance || balance<minBalance)
 		 {
@@ -60,15 +65,16 @@ public class Gambling {
 			 throw new InvalidProbabilityException();
 		 }
 		 
-		 if(rand.generateRandomBoolean())
-		 {
-			 balance+=(Math.pow(p, -1)-1)*amnt;
-			 return true;
-		 }
-		 else
-		 {
-			 balance-=amnt;
-			 return false;
-		 }
+		 
+//		 if(rand.generateRandomBoolean())
+//		 {
+//			 balance+=(Math.pow(p, -1)-1)*amnt;
+//			 return true;
+//		 }
+//		 else
+//		 {
+//			 balance-=amnt;
+//			 return false;
+//		 }
 	 }
 }
